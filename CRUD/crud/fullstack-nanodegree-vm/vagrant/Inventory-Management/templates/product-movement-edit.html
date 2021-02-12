@@ -1,0 +1,44 @@
+{% extends "main.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+    {{ super() }}
+
+{% endblock %}
+{% block content %}
+    <h3>edit Product Movement</h3>
+    <form action='{{url_for('productMovementEdit', movement_id=movement_id)}}' method='post'>
+        <p>Product:</p>
+        <!-- <input type='text' size='30' name='fromlocation'> -->
+        <select  name="product">
+            {%for item in products%}
+            <option value="{{item.id}}">{{item.name}}</option>
+            {%endfor%}
+         </select>
+
+        <p>From Location:</p>
+        <!-- <input type='text' size='30' name='fromlocation'> -->
+        <!-- <option value="{{thisMovement.from_location}}">{{print_location(thisMovement.from_location)}}</option> -->
+        <select  name="fromlocation">
+
+            <option value="">None</option>
+            {%for item in items%}
+            <option value="{{item.id}}">{{item.name}}</option>
+            {%endfor%}
+         </select>
+        <p>To Location:</p>
+        <!-- <input type='text' size='30' name='tolocation'> -->
+        <select  name="tolocation">
+            <!-- <option value="{{thisMovement.to_location}}">{{print_location(thisMovement.to_location)}}</option> -->
+            <option value="">None</option>
+            {%for item in items%}
+            <option value="{{item.id}}">{{item.name}}</option>
+            {%endfor%}
+         </select>
+        <!-- <p>Time:</p>
+        <input type='time-local' size='30' name='time'> -->
+        <p>Quantity:</p>
+        <input type='number' placeholder='{{thisMovement.qyt}}' size='30' name='qty'  min="0">
+        <input type='submit' value='Create'>
+        {{error}}
+    </form>
+{% endblock %}

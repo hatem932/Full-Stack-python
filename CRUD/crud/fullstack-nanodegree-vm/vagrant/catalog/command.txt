@@ -1,0 +1,47 @@
+vagrant@vagrant:/vagrant$ cd catalog/
+vagrant@vagrant:/vagrant/catalog$ ls
+database_setup.py  README.txt  restaurantmenu.db
+vagrant@vagrant:/vagrant/catalog$ python
+Python 2.7.12 (default, Apr 15 2020, 17:07:12)
+[GCC 5.4.0 20160609] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>>
+KeyboardInterrupt
+>>> from sqlalchemy import create_engine
+>>> from sqlalchemy.orm import sessionmaker
+>>>  from database_setup import Base, Restaurant, MenuItem
+  File "<stdin>", line 1
+    from database_setup import Base, Restaurant, MenuItem
+    ^
+IndentationError: unexpected indent
+>>> from database_setup import Base, Restaurant, MenuItem
+>>> engine = create_engine('sqlite:///restaurantmenu.db')
+>>> Base.metadata.bind = engine
+>>> DBSession = sessionmaker(bind = engine)
+>>> session = DBSession()
+>>> myFirstRestaurant = Restaurant(name = "Pizza Palace")
+>>> session.add(myFirstRestaurant)
+>>> session.commit()
+>>> session.query(Restaurant).all()
+[<database_setup.Restaurant object at 0xb684e70c>]
+>>> cheesepizza = MenuItem(name = "Cheese Pizza", description = "Made with all natural ingredients and freesh mozzarela", course = "Entree", prise\\\
+  File "<stdin>", line 1
+    cheesepizza = MenuItem(name = "Cheese Pizza", description = "Made with all natural ingredients and freesh mozzarela", course = "Entree", prise\\\
+                                                                                                                                                    ^
+SyntaxError: unexpected character after line continuation character
+>>> cheesepizza = MenuItem(name = "Cheese Pizza", description = "Made with all natural ingredients and freesh mozzarela", course = "Entree", price = "$8.99", restaurant = myFirstRestaurant)
+>>> session.add(cheesepizza)
+>>> session.commit()
+>>> session.query(MenuItem).all()
+[<database_setup.MenuItem object at 0xb6861b0c>]
+
+>>> firstResalt = session.query(Restaurant).first()
+
+>>> firstResalt.name
+u'Pizza Palace'
+>>>
+KeyboardInterrupt
+>>>
+
+
+

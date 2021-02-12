@@ -1,0 +1,15 @@
+{% extends "main.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+    {{ super() }}
+
+{% endblock %}
+{% block content %}
+    <h3>Create New Location</h3>
+    <form action='{{url_for('newLocation')}}' method='post'>
+        <h3>Name City:</h3>
+        <input type='text' size='30' name='name'>
+        <input type='submit' value='Create'>
+        <p class="error">{{error}}</p>
+    </form>
+{% endblock %}

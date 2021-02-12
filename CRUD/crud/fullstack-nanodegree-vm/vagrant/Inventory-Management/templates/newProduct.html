@@ -1,0 +1,25 @@
+{% extends "main.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+    {{ super() }}
+
+{% endblock %}
+{% block content %}
+    <h3>Create New Product</h3>
+    <form action='{{url_for('newProduct')}}' method='post'>
+        <p>Name:</p>
+        <input type='text' size='30' name='name'>
+        <p>Location</p>
+        <select  name="location">
+            {%for item in items%}
+            <option value="{{item.id}}">{{item.name}}</option>
+            {%endfor%}
+         </select>
+        <p>Quantity:</p>
+        <input type='number' size='30' name='qty'  min="0">
+
+        <input type='submit' value='Create'>
+        <a href='{{url_for('inventoryProduct')}}'>Cancel</a>
+        {{error}}
+    </form>
+{% endblock %}

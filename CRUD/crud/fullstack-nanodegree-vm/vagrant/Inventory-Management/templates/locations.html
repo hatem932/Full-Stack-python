@@ -1,0 +1,52 @@
+{% extends "main.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+    {{ super() }}
+
+{% endblock %}
+{% block content %}
+<div>
+    <h3>All locations</h3>
+
+    <a class="inl" href='{{url_for('newLocation')}}'>Click here to add location</a>
+</div>
+    <div>
+
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <div class="success">
+         <li><strong> {{message}} </strong></li>
+     </div>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% endwith %}
+
+    <ul>
+        <div class="table-wrapper">
+            <table class="fl-table">
+                <thead>
+        <!-- <table id="customers"> -->
+        <tr>
+        <th>Location</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for item in items %}
+    <tr>
+      <td>{{item.name}}</td>
+      <td><a class="inl fa fa-edit" style="font-size:20px" href='{{url_for('editLocation', location_id=item.id)}}'>Edit</a></td>
+    </tr>
+    <!-- <li><h3 class="inl">    {{item.name}} </h3>
+    <a class="inl" href='{{url_for('editLocation', location_id=item.id)}}'>Edit</a></li> -->
+
+    {%endfor%}
+    <tbody>
+  </table>
+  </div>
+
+{% endblock %}

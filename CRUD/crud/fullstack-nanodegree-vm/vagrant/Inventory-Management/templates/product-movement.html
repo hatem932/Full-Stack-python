@@ -1,0 +1,92 @@
+{% extends "main.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+    {{ super() }}
+
+{% endblock %}
+{% block content %}
+    <h3>All Product Movement</h3>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <div class="success">
+         <li><strong> {{message}} </strong></li>
+     </div>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% endwith %}
+    <a class="inl" href='{{url_for('newProductMovement')}}'>Click here to add Product Movement</a>
+
+
+
+    <ul>
+        <div class="table-wrapper">
+            <table class="fl-table">
+                <thead>
+      <tr>
+          <th> </th>
+        <th> </th>
+        <th> </th>
+        <th> </th>
+        <th> </th>
+        <th> </th>
+        <th> </th>
+      </tr>
+  </thead>
+  <tbody>
+      {% for item in items %}
+      {% if item.from_location and item.to_location %}
+      <tr>
+          <td>Move </td>
+        <td>{{print_product(item.product_id)}}</td>
+        <td>from</td>
+        <td>{{print_location(item.from_location)}}</td>
+        <td>To</td>
+        <td>{{print_location(item.to_location)}}</td>
+        <td><a class="inl fa fa-edit" style="font-size:20px" href="{{url_for('productMovementEdit',movement_id = item.id)}}">Edit</a></td>
+      </tr>
+      {% elif not item.from_location %}
+      <tr>
+          <td>Move </td>
+        <td>{{print_product(item.product_id)}}</td>
+        <td></td>
+        <td></td>
+        <td>To</td>
+        <td>{{print_location(item.to_location)}}</td>
+        <td><a class="inl fa fa-edit" style="font-size:20px"  href="{{url_for('productMovementEdit',movement_id = item.id)}}">Edit</a></td>
+      </tr>
+      {% elif not item.to_location %}
+      <tr>
+          <td>Move </td>
+        <td>{{print_product(item.product_id)}}</td>
+        <td>from</td>
+        <td>{{print_location(item.from_location)}}</td>
+        <td>to out Location</td>
+        <td>{{print_location(item.to_location)}}</td>
+        <td><a class="inl fa fa-edit" style="font-size:20px" href="{{url_for('productMovementEdit',movement_id = item.id)}}">Edit</a></td>
+      </tr>
+      {%endif%}
+      {%endfor%}
+      <tbody>
+    </table>
+    </div>
+
+            <!-- {% for item in items %}
+            {% if item.from_location and item.to_location %}
+        <li>
+              <p>Move {{print_product(item.product_id)}} Product from Location {{print_location(item.from_location)}} to Location {{print_location(item.to_location)}}</p>
+            {% elif not item.from_location %}
+                <p>Move Product {{print_product(item.product_id)}} to Location {{print_location(item.to_location)}} </p>
+            {% elif not item.to_location %}
+                <p>Move Product {{print_product(item.product_id)}} to the same Location {{print_location(item.to_location)}} </p>
+
+            {%endif%}
+            <a href="{{url_for('productMovementEdit',movement_id = item.id)}}">Edit</a>
+        </li>
+            {%endfor%}
+</ul> -->
+
+{% endblock %}

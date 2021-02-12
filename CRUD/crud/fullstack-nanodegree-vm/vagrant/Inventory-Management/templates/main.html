@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    <!-- <link rel="stylesheet" type="text/css" href="../static/styles.css"> -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='styles.css')}}">
+    <title>{% block title %}{% endblock %} - My Webpage</title>
+    {% endblock %}
+</head>
+<body>
+    <div class="header">
+      <a href="#default" class="logo">ERP System</a>
+      <div class="header-right">
+        <!-- <a class="active" href="/">Home</a> -->
+        <a href="/inventory/product">Products</a>
+        <a href="/inventory/Location">Locations</a>
+        <a href="/inventory/product-movement">Product Movement</a>
+      </div>
+    </div>
+    <div id="content">{% block content %}{% endblock %}
+
+        </div>
+        <div class="footer">
+
+            &copy; Copyright 2021 by hatem Al-Rub
+
+    </div>
+
+</body>
+</html>

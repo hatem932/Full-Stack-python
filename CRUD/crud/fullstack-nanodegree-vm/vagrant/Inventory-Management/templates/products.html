@@ -1,0 +1,56 @@
+{% extends "main.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+    {{ super() }}
+
+{% endblock %}
+{% block content %}
+    <h3>All Product</h3>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <div class="success">
+         <strong> {{message}} </strong>
+     </div>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% endwith %}
+    <a  class="inl" href='{{url_for('newProduct')}}'>Click here to add new product</a>
+
+
+
+    <ul>
+
+
+
+        <div class="table-wrapper">
+            <table class="fl-table">
+                <thead>
+  <tr>
+    <th>Product</th>
+    <th>Quantity</th>
+    <th>Location</th>
+  </tr>
+</thead>
+<tbody>
+  {% for item in items %}
+  <tr>
+    <td>{{item.name}}</td>
+    <td>{{item.qyt}}</td>
+    <td>{{print_location(item.locationproduct)}}</td>
+    <td><a class="inl fa fa-edit" style="font-size:20px"  href='{{url_for('editProduct', product_id=item.id)}}'>Edit</a></td>
+  </tr>
+  {%endfor%}
+  <tbody>
+</table>
+</div>
+<!-- {% for item in items %} -->
+    <!-- <li>   <p> {{item.name}} </p> <p> {{item.qyt}} </p> <p> {{print_location(item.locationproduct)}} </p></li>
+    <a href='{{url_for('editProduct', product_id=item.id)}}'>Edit</a>
+    {%endfor%} -->
+
+{% endblock %}

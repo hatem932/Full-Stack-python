@@ -1,0 +1,74 @@
+{% extends "main.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+    {{ super() }}
+
+{% endblock %}
+{% block content %}
+    <h3>Create Product Movement</h3>
+    <form action='{{url_for('newProductMovement')}}' method='post'>
+        <lable>Products:</lable>
+        <!-- <input type='text' size='30' name='fromlocation'> -->
+        <select  name="product">
+            {%for item in products%}
+            <option value="{{item.id}}">{{item.name}}</option>
+            {%endfor%}
+         </select>
+
+        <lable>From Location:</lable>
+        <!-- <input type='text' size='30' name='fromlocation'> -->
+        <select  name="fromlocation">
+            <option value="">None</option>
+            {%for item in items%}
+            <option value="{{item.id}}">{{item.name}}</option>
+            {%endfor%}
+         </select>
+        <lable>To Location:</lable>
+        <!-- <input type='text' size='30' name='tolocation'> -->
+        <select  name="tolocation">
+            <option value="">None</option>
+            {%for item in items%}
+            <option value="{{item.id}}">{{item.name}}</option>
+            {%endfor%}
+         </select>
+        <!-- <p>Time:</p>
+        <input type='time-local' size='30' name='time'> -->
+        <lable>Quantity:</lable>
+        <input type='number' size='30' name='qty'  min="0">
+        <input type='submit' value='Create'>
+        {{error}}
+    </form>
+
+    <!-- <h1>Create Product Movement</h1>
+
+    <div>
+      <form action='{{url_for('newProductMovement')}}' method='post'>
+
+          <label>Products</label>
+          <select name="product">
+              {%for item in products%}
+              <option value="{{item.id}}">{{item.name}}</option>
+              {%endfor%}
+           </select>
+
+
+
+
+
+        <label for="fname">First Name</label>
+        <input type="text" id="fname" name="firstname" placeholder="Your name..">
+
+        <label for="lname">Last Name</label>
+        <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+
+        <label for="country">Country</label>
+        <select id="country" name="country">
+          <option value="australia">Australia</option>
+          <option value="canada">Canada</option>
+          <option value="usa">USA</option>
+        </select>
+
+        <input type="submit" value="Submit">
+      </form>
+    </div> -->
+{% endblock %}
